@@ -1,15 +1,27 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { exampleAction } from "../redux/actions/exampleAction";
+import * as exampleAction from "../redux/actions/exampleAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 class App extends Component {
-  componentWillMount() {
+  state = {
+    course: {
+      title: ""
+    }
+  };
 
-  }
+  handleChange = event => {
+    const course = { ...this.state.course, title: event.target.value };
+    this.setState({ course });
+  };
+  handleSubmit = event => {
+
+    event.preventDefault();
+    this.props.actions.exampleAction(this.state.course);
+  };
 
   render() {
     return (
@@ -18,8 +30,20 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <div>
             <h1>Hello world, this is a Redux tutorial!</h1>
+            <form onSubmit={this.handleSubmit}>
+              <h2>Courses</h2>
+              <h3>Add Course</h3>
+              <input
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.course.title}
+              />
 
-            <p>Here is our property: {this.props.examplePropOne}</p>
+              <input type="submit" value="Save" />
+              {this.props.example.map(text => (
+                <div key={text.title}>{text.title}</div>
+              ))}
+            </form>
           </div>
         </header>
       </div>
@@ -28,20 +52,21 @@ class App extends Component {
 }
 
 App.propTypes = {
-  examplePropOne: PropTypes.string.isRequired
+  example: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
-  debugger;
+  
   return {
-    examplePropOne: state.examplePropOne
+    example: state.text // text varible comes from combine reducers
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  debugger;
+  
   return {
-    actions: bindActionCreators({ exampleAction }, dispatch)
+    actions: bindActionCreators(exampleAction, dispatch)
   };
 };
 export default connect(
