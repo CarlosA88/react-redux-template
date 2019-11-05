@@ -18,11 +18,11 @@ class App extends Component {
     this.setState({ course });
   };
   handleSubmit = event => {
-
     event.preventDefault();
-    this.props.actions.exampleAction(this.state.course);
+    this.props.actions.exampleAction(this.state.course); //Some one click the send button
   };
 
+  //React: reflect and updates new changes if necesary 
   render() {
     return (
       <div className="App">
@@ -51,24 +51,25 @@ class App extends Component {
   }
 }
 
+//React validate that we recieve our new data from the store 
 App.propTypes = {
   example: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
-  
   return {
-    example: state.text // text varible comes from combine reducers
+    example: state.text //text variable comes from redux combine reducers and becomes the new state
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  
   return {
-    actions: bindActionCreators(exampleAction, dispatch)
+    actions: bindActionCreators(exampleAction, dispatch) //Send my cmp state to redux
   };
 };
+
+//react-redux: connect() allow us to send data & recieve from the store
 export default connect(
   mapStateToProps,
   mapDispatchToProps

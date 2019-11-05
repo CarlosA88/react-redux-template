@@ -6,10 +6,10 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider as ReduxProvider } from "react-redux";
 import configureStore from "./redux/configureStore";
 
-const store = configureStore();
-
+const store = configureStore(); //Instanciating the store 
+//Injecting the store to our app
 ReactDOM.render(
-  <ReduxProvider store={store}>
+  <ReduxProvider store={store}> 
     <App />
   </ReduxProvider>,
   document.getElementById("root")
