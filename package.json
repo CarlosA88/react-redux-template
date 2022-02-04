@@ -2,7 +2,7 @@
   "name": "reactredux",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://carlosa88.github.io/react-redux-template",
+  "homepage": "https://carlosa88.github.io/reactredux",
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
