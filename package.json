@@ -2,6 +2,7 @@
   "name": "reactredux",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://carlosa88.github.io/react-redux-template",
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
@@ -11,6 +12,7 @@
     "redux": "^4.0.4"
   },
   "scripts": {
+    "deploy": "npm run build&&gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -30,5 +32,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
